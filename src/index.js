@@ -1,6 +1,9 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
+// PreMerge Privacy Check - Secret & PII PR Scanner
+// Made by prady
+
 // Comprehensive regex patterns for secrets and PII
 const SECRET_PATTERNS = [
   // API Keys and Tokens

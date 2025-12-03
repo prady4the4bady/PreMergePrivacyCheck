@@ -2,6 +2,8 @@
 
 A lightweight GitHub Action that scans pull request diffs for secrets and personally identifiable information (PII) before merge. Designed for small OSS projects that need security without complexity.
 
+**Made by prady**
+
 ## 🚀 Features
 
 - **PR-Only Scanning**: Only scans changed files in pull requests, not entire repository
