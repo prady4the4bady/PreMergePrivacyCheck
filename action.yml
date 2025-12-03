@@ -1,0 +1,25 @@
+name: 'PreMerge Privacy Check'
+description: 'Scans PR diffs for secrets and PII before merge'
+author: 'prady4the4bady'
+inputs:
+  github-token:
+    description: 'GitHub token for API access'
+    required: true
+  scan-mode:
+    description: 'Scan mode - "pr-diff" or "full-repo"'
+    required: false
+    default: 'pr-diff'
+  fail-on-findings:
+    description: 'Fail the action if secrets/PII are found'
+    required: false
+    default: 'true'
+  exclude-patterns:
+    description: 'Comma-separated patterns to exclude from scanning'
+    required: false
+    default: ''
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  icon: 'shield'
+  color: 'red'
