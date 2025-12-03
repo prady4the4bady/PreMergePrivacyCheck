@@ -1,0 +1,28 @@
+name: 'Test Privacy Check'
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main, master]
+
+jobs:
+  test-privacy-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: PreMerge Privacy Check
+        uses: ./  # Use local action for testing
+        id: privacy-check
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          scan-mode: 'pr-diff'
+          fail-on-findings: 'false'  # Don't fail for demo purposes
+          exclude-patterns: 'test/,example-,*.md'
+
+      - name: Show results
+        run: |
+          echo "Findings: ${{ steps.privacy-check.outputs.findings-count }}"
+          echo "Critical: ${{ steps.privacy-check.outputs.critical-count }}"
+          echo "High: ${{ steps.privacy-check.outputs.high-count }}"
